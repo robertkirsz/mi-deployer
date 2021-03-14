@@ -79,6 +79,7 @@ function Server({ link }: { link: string }) {
   const [branch, setBranch] = useState('')
   const [tests, setTests] = useState(false)
   const [deploying, setDeploying] = useState(false)
+  const [isDeployed, setIsDeployed] = useState(false)
   const classes = useStyles()
 
   function preventDefault(event: any) {
@@ -105,6 +106,7 @@ function Server({ link }: { link: string }) {
   }
 
   function handleDeploy() {
+    setIsDeployed(false)
     setDeploying(true)
   }
 
@@ -124,6 +126,7 @@ function Server({ link }: { link: string }) {
       clearInterval(timerRef.current)
       setDeploying(false)
       setCountdownValue(9)
+      setIsDeployed(true)
     }
   }, [countdownValue])
 
@@ -168,9 +171,11 @@ function Server({ link }: { link: string }) {
         onChange={handleChangeBranch}
       />
 
-      <Link href="#" variant="body1" onClick={preventDefault}>
-        Link to Jenkins job
-      </Link>
+      {isDeployed && (
+        <Link href="#" variant="body1" onClick={preventDefault}>
+          Link to Jenkins job
+        </Link>
+      )}
 
       <FormControlLabel
         className={classes.checkboxWrapper}
