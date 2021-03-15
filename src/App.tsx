@@ -67,7 +67,10 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 4,
     zIndex: 10,
     color: 'white',
-    margin: '0 !important'
+    margin: '0 !important',
+    '& > * + *': {
+      marginLeft: theme.spacing(2)
+    }
   },
   checkboxWrapper: {
     marginLeft: 'auto'
@@ -204,6 +207,9 @@ function Server({ link }: { link: string }) {
           <Typography variant="body1">
             Deploying... 00:00:0{countdownValue}
           </Typography>
+          <Link href="#" variant="body1" onClick={preventDefault}>
+            Link to Jenkins job
+          </Link>
         </div>
       )}
     </div>
@@ -230,7 +236,7 @@ export default function App() {
       </div>
 
       <div className={classes.productWrapper}>
-        <Typography variant="h5">WebCast</Typography>
+        <Typography variant="h5">Webcast</Typography>
 
         <div className={classes.serversList}>
           <Server link="webcast-stg.movingimage.com" />
