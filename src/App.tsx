@@ -55,6 +55,7 @@ const useStyles = makeStyles(theme => ({
   },
   deployingOverlay: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
@@ -207,7 +208,12 @@ function Server({ link }: { link: string }) {
           <Typography variant="body1">
             Deploying... 00:00:0{countdownValue}
           </Typography>
-          <Link href="#" variant="body1" onClick={preventDefault}>
+          <Link
+            href="#"
+            variant="body1"
+            onClick={preventDefault}
+            style={{ color: 'inherit', textDecoration: 'underline' }}
+          >
             Link to Jenkins job
           </Link>
         </div>
